@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="./img/favicon.ico">
+    <link rel="stylesheet" href="./style/style.css">
+    <title>ToDo List</title>
+</head>
+<body>
+  <div id="app">
+    <h1>Vue.js To-DO List</h1>
+    <div class="container">
+      <div class="add-task">
+        <input placeholder="Title"
+                class="add-task__input"
+                type="text" 
+                v-model="new_task.title" 
+                v-on:keydown.enter="add_task">
+                
+        <textarea placeholder="Description"
+                  class="add-task__ta"
+                  type="text" 
+                  v-model="new_task.desc" 
+                  v-on:keydown.enter="add_task">
+
+                </textarea> 
+
+        <button  @click="add_task(id++)" class="add-task__btn">Add</button>
+    </div>
+    <div class="task-area">
+
+      <div class="task" v-for="(t,i) in tasks" :key="t.i">
+        
+        <div :class="{un:t.isComplete}"> 
+          <span  class="task__title">{{t.title}}</span>
+          <span  class="task__desc">{{t.desc}}</span>
+        </div>
+
+        <div class="task__func">
+          <label class="check-container">
+            <input type="checkbox" v-model="t.isComplete"/>
+            <span class="checkmark"></span>
+          </label>
+          <button class="task__done" @click="delete_task(i)">X</button>  
+        </div>
+
+      </div>
+    </div>
+    </div>
+    </div>
+</body>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.min.js"></script>
+<script src="./js/index.js"></script>
+</html>
+
